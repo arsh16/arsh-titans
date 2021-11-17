@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProcessEditPage = exports.DisplayEditPage = exports.ProcessAddPage = exports.DisplayAddPage = exports.DisplaySurveyPage = exports.DisplayHomePage = void 0;
+exports.performDelete = exports.ProcessEditPage = exports.DisplayEditPage = exports.ProcessAddPage = exports.DisplayAddPage = exports.DisplaySurveyPage = exports.DisplayHomePage = void 0;
 const survey_1 = __importDefault(require("../Models/survey"));
 function DisplayHomePage(req, res, next) {
     res.render('index', { title: 'Home', page: 'home' });
@@ -27,8 +27,8 @@ function ProcessAddPage(req, res, next) {
     let newSurvey = new survey_1.default({
         "name": req.body.name,
         "owner": req.body.owner,
-        "survey_id": req.body.survey_id,
         "isActive": req.body.isActive == "on" ? true : false,
+        "survey_id": req.body.survey_id,
         "startDate": req.body.startDate,
         "endDate": req.body.endDate,
         "question1": req.body.question1,
@@ -130,4 +130,17 @@ function ProcessEditPage(req, res, next) {
     console.log(updatedSurvey);
 }
 exports.ProcessEditPage = ProcessEditPage;
+function performDelete(req, res, next) {
+    let id = req.params.id;
+    survey_1.default.remove({ _id: id }, (err) => {
+        if (err) {
+            console.log(err);
+            res.end(err);
+        }
+        else {
+            res.redirect('/survey');
+        }
+    });
+}
+exports.performDelete = performDelete;
 //# sourceMappingURL=index.js.map

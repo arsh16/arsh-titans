@@ -15,11 +15,12 @@ router.get('/home', index_1.DisplayHomePage);
 /* GET survey page. */
 router.get('/survey', index_1.DisplaySurveyPage);
 router.get('/add', index_1.DisplayAddPage);
-/* Process survey page. */
 router.post('/add', index_1.ProcessAddPage);
-//module.exports = router;
 /* GET  edit survey page. */
 router.get('/edit/:id', index_1.DisplayEditPage);
 /* Process  edit survey page. */
 router.post('/edit/:id', index_1.ProcessEditPage);
+/* GET to perform  Deletion - DELETE Operation */
+router.get('/delete/:id', index_1.performDelete);
+module.exports = router;
 //# sourceMappingURL=index.js.map
