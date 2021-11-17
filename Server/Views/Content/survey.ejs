@@ -1,0 +1,57 @@
+<div class="container">
+      <h1 style="color: black"><%= title %></h1>
+
+
+        
+<a href="/add"><button type="button" class="btn btn-primary">Create Survey</button></a><br/>
+
+<div class="row">
+    <div class="col">
+
+        <table class="table table-striped table-bordered table-hover">
+            <thead clas="thead" class="table-primary" style="color: black" >
+                <tr>
+                    <!--same as the number of items in each document in the your collectiom-->
+                    <th scope="col" >#</th>
+                    <th scope="col">Survey Name</th>
+                    <th scope="col">Start Date</th>
+                    <th scope="col">End Date</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+
+               <!--Repeatable row template-->
+                <% for(let count=0; count < surveys.length; count++) { %>
+                
+                    <tr>
+                        <th scope="row"><%= count + 1 %></th>
+                        <td><%= surveys[count].name %></td>
+                        <td><%= surveys[count].startDate %></td>
+                        <td><%= surveys[count].endDate %></td>
+
+
+                        <td class="text-centre col-1">                            
+                            <a href="edit/<%= surveys[count]._id %>" class="btn btn-primary btn-sm">
+                            <i class="fas fa-pencil-alt"></i> Edit </a>
+                        </td>
+                        
+                        <td class="text-center col-1">
+                                <a href="/delete/<%= surveys[count]._id %>" class="btn btn-danger btn-sm">
+                                <i class="fas fa-trash-alt"></i> Delete</a>
+                        </td>
+                    </tr>
+                <% } %>                
+              
+            </tbody>
+        </table>
+
+    </div>
+    <div class="col-md-offset-1 col-md-10 text-center">
+                <ul class="pagination pagination-lg pager" id="myPager"></ul>
+              </div>
+</div>
+        
+
+</div>
